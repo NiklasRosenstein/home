@@ -1,0 +1,56 @@
+{
+  // General editor settings
+  "editor.autoClosingBrackets": false,
+  "editor.rulers": [79],
+  "editor.tabSize": 2,
+  "editor.fontSize": 14,
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.minimap.enabled": false,
+  "explorer.sortOrder": "default",
+
+  // File settings
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.pyp": "python",
+    "Craftrfile": "python",
+    "*.craftr": "python"
+  },
+  "files.exclude": {
+    "**/*.pyc": true
+  },
+
+  // Terminal settings
+  "terminal.integrated.shell.windows": "C:\\Users\\niklas\\repos\\home\\vscode\\bash.cmd",
+  "terminal.integrated.shell.linux": "bash",
+  "terminal.integrated.cursorBlinking": true,
+
+  // Language specific settings
+  "[cpp]": {
+    "editor.rulers": [120]
+  },
+  "[html]": {
+    "editor.rulers": [100]
+  },
+  "[markdown]": {
+    "editor.quickSuggestions": false,
+    "editor.wordWrap": "off",
+    "editor.renderWhitespace": "boundary",
+    "files.trimTrailingWhitespace": false
+  },
+
+  // Window settings
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "vscode-great-icons",  // VSCode Great Icons
+  "workbench.colorTheme": "Adapta Nokto",  // Linux themes for VSCode
+  "extensions.ignoreRecommendations": true,
+  "csharp.suppressDotnetInstallWarning": true,
+  "csharp.suppressDotnetRestoreNotification": true,
+  "python.linting.pylintEnabled": false,
+  "workbench.panel.location": "bottom",
+  "explorer.confirmDragAndDrop": false
+}

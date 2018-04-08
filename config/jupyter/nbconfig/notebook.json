@@ -1,0 +1,22 @@
+{
+  "keys": {
+    "command": {
+      "bind": {
+        "f7": "jupyter-notebook:run-all-cells-below"
+      }
+    },
+    "edit": {
+      "bind": {
+        "f7": "jupyter-notebook:run-all-cells-below"
+      }
+    }
+  },
+  "CodeCell": {
+    "cm_config": {
+      "indentUnit": 2,
+      "tabSize": 2,
+      "smartIndent": false,
+      "autoClearEmptyLines": true
+    }
+  }
+}

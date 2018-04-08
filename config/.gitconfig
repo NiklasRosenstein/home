@@ -1,0 +1,30 @@
+[user]
+  email = rosensteinniklas@gmail.com
+  name = Niklas Rosenstein
+  signingkey = 06D269B33D25F6C6
+[commit]
+  gpgsign = true
+[core]
+  quotepath = false
+[push]
+  default = upstream
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch
+  dc = diff --cached
+  ci = commit
+  rb = rebase
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+  mirror-push = "!f() { git push --prune $1 +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*; }; f"
+  show-files = show --pretty="" --name-only
+  tt = timetrack
+  wl = worklog
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  rquired = true
+  process = git-lfs filter-process
+  required = true
+[include]
+  path = ~/.gitconfig.local
