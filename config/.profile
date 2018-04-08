@@ -106,7 +106,6 @@ __set_ps1
 # SSH Agent (thanks to http://stackoverflow.com/a/18915067/791713)
 # =================================================================
 
-
 if [ -d "$HOME/.ssh" ] && [[ $- == *i* ]]; then
     SSH_ENV="$HOME/.ssh/environment"
     function start_agent {
@@ -131,53 +130,3 @@ elif [[ $- != *i* ]]; then
 else
     echo "note: $HOME/.ssh does'nt exist. Skipping ssh-agent"
 fi
-
-# =================================================================
-# GPG Agent.
-# Windows Instructions:
-#   1. Install from https://gnupg.org/download/
-#   2. Make sure to set up your PATH to prefer the `gpg` from the just
-#      installed version of GnuPG instead of `gpg` from GitForWindows.
-#   3. git config --global gpg.program 'C:\Program Files (x86)\gnupg\bin\gpg.exe'
-#   4. gpgconf --list-dirs   to find the home directory of your GPG installation
-#   5. Go into the homedir directory and add gpg-agent.conf
-#
-#       default-cache-ttl 600
-#       max-cache-ttl 7200
-#       log-file ~/.gpg-agent-log.txt
-#       enable-ssh-support # If you want SSH support
-#   6. gpgconf --reload gpg-agent
-# =================================================================
-
-
-if [[ "$(uname -s)" != *_NT* ]];
-then
-    gpg-agent
-fi
-
-function __gpg_homedir {
-    if [[ "$(gpgconf --list-dirs)" =~ homedir:(.*) ]];
-    then
-        echo ${BASH_REMATCH[1]/\%3a/:}
-        return 0
-    else
-        return 1
-    fi
-}
-
-function __gpg_ssh_port {
-    data="$(cat $(__gpg_homedir)/S.gpg-agent.ssh)"
-    if [[ "$data" =~ ^([0-9]+) ]];
-    then
-        echo ${BASH_REMATCH[1]}
-        return 0
-    else
-        return 1
-    fi
-}
-
-# TODO: Unfortunately, GitForWindows ssh can not read the S.gpg-agent.ssh
-#       (which is a file, not an emulated socket) created by GPG, and there
-#       seems to be no way to use a port instead of a socket.
-#export SSH_AUTH_SOCK=$(__gpg_homedir)\\S.gpg-agent.ssh
-#export SSH_AUTH_PORT=$(__gpg_ssh_port)
