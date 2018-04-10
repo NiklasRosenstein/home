@@ -99,6 +99,7 @@ def main():
     if os.path.isfile('config/.gitconfig.' + name):
       symlink('config/.gitconfig.' + name, '~/.gitconfig.local', force=args.force, copy=args.copy_gitconfig)
   symlink('config/.profile', '~/.profile', force=args.force)
+  symlink('config/.hyper.js', '~/.hyper.js', force=args.force)
   symlink('config/jupyter/nbconfig/notebook.json', '~/.jupyter/nbconfig/notebook.json', force=args.force)
   if args.profiles_only:
     return
