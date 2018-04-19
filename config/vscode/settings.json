@@ -25,7 +25,7 @@
   },
 
   // Terminal settings
-  "terminal.integrated.shell.windows": "C:\\Users\\niklas\\repos\\home\\vscode\\bash.cmd",
+  "terminal.integrated.shell.windows": "C:\\Users\\niklas\\Repositories\\NiklasRosenstein\\home\\config\\vscode\\bash.cmd",
   "terminal.integrated.shell.linux": "bash",
   "terminal.integrated.cursorBlinking": true,
 

@@ -105,6 +105,7 @@ def main():
     return
 
   # Link VS Code settings.
+  symlink('config/vscode/keybindings.json', join(config_dir, 'Code/User/keybindings.json'), force=args.force)
   symlink('config/vscode/settings.json', join(config_dir, 'Code/User/settings.json'), force=args.force)
 
   if os.name == 'nt':
