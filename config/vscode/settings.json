@@ -48,9 +48,11 @@
   "workbench.iconTheme": "vscode-great-icons",  // VSCode Great Icons
   "workbench.colorTheme": "Adapta Nokto",  // Linux themes for VSCode
   "extensions.ignoreRecommendations": true,
-  "csharp.suppressDotnetInstallWarning": true,
-  "csharp.suppressDotnetRestoreNotification": true,
-  "python.linting.pylintEnabled": false,
-  "workbench.panel.location": "bottom",
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "workbench.activityBar.visible": false,
+  "window.menuBarVisibility": "toggle",
+  "glsllint.glslangValidatorPath": "glslangValidator",
+  "window.smoothScrollingWorkaround": true,
+  "explorer.openEditors.visible": 0,
+  "explorer.autoReveal": false
 }
