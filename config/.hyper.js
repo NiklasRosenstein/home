@@ -4,10 +4,6 @@
 
 module.exports = {
   config: {
-    // Choose either "stable" for receiving highly polished,
-    // or "canary" for less polished but more frequent updates
-    updateChannel: 'stable',
-
     // default font size in pixels for all tabs
     fontSize: 12,
 
@@ -74,24 +70,25 @@ module.exports = {
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
-    //
-    // Windows
-    // - Make sure to use a full path if the binary name doesn't work
-    // - Remove `--login` in shellArgs
-    //
-    // Bash on Windows
-    // - Example: `C:\\Windows\\System32\\bash.exe`
-    //
-    // Powershell on Windows
-    // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-    shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
+    // make sure to use a full path if the binary name doesn't work
+    // (e.g `C:\\Windows\\System32\\bash.exe` instead of just `bash.exe`)
+    // if you're using powershell, make sure to remove the `--login` below
+    shell: (() => {
+      let userPath = 'C:\\Users\\niklas\\Applications\\Git\\bin\\bash.exe';
+      return userPath;
+      //let systemPath = 'C:\\Program Files\\Git\\bin\\bash.exe';
+      //if (!fs.existsSync(userPath)) return userPath;
+      //return systemPath;
+    })(),
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
     shellArgs: ['--login'],
 
     // for environment variables
-    env: { TERM: 'cygwin' },
+    env: {
+        TERM: 'cygwin'
+    },
 
     // set to false for no bell
     bell: 'SOUND',
@@ -115,19 +112,10 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [
-    "hyperlinks",
-    "hypergoogle",
-    "hyperterm-safepaste"
-  ],
+  plugins: [],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
-  localPlugins: [],
-
-  keymaps: {
-    // Example
-    // 'window:devtools': 'cmd+alt+o',
-  }
+  localPlugins: []
 };
