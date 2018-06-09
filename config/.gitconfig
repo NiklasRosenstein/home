@@ -6,6 +6,7 @@
   gpgsign = true
 [core]
   quotepath = false
+  editor = nano
 [push]
   default = upstream
 [alias]
