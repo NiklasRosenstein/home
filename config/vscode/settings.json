@@ -58,6 +58,7 @@
   "glsllint.glslangValidatorPath": "glslangValidator",
   "window.smoothScrollingWorkaround": true,
   "explorer.openEditors.visible": 0,
-  "explorer.autoReveal": false,
+  "explorer.autoReveal": true,
   "window.restoreWindows": "none",
+  "workbench.startupEditor": "newUntitledFile"
 }

@@ -99,6 +99,7 @@ def main():
     if os.path.isfile('config/.gitconfig.' + name):
       symlink('config/.gitconfig.' + name, '~/.gitconfig.local', force=args.force, copy=args.copy_gitconfig)
   symlink('config/.profile', '~/.profile', force=args.force)
+  symlink('config/.inputrc', '~/.inputrc', force=args.force)
   symlink('config/.hyper.js', '~/.hyper.js', force=args.force)
   symlink('config/jupyter/nbconfig/notebook.json', '~/.jupyter/nbconfig/notebook.json', force=args.force)
   if args.profiles_only:
@@ -111,10 +112,6 @@ def main():
   if os.name == 'nt':
     # Link Cmder conemu-maximus5 settings.
     symlink('config/ConEmu.xml', '~/Applications/Cmder/vendor/conemu-maximus5/ConEmu.xml', force=args.force)
-
-  # Link Franz preferences from the Nextcloud synchronization folder.
-  symlink('~/Nextcloud/share/prefs/Franz/Plugins', join(config_dir, 'Franz/Plugins'), force=args.force)
-  symlink('~/Nextcloud/share/prefs/Franz/settings', join(config_dir, 'Franz/settings'), force=args.force)
 
 
 if __name__ == '__main__':

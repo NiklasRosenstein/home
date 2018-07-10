@@ -75,8 +75,8 @@ module.exports = {
     // if you're using powershell, make sure to remove the `--login` below
     shell: (() => {
       let userPath = 'C:\\Users\\niklas\\Applications\\Git\\bin\\bash.exe';
-      return userPath;
-      //let systemPath = 'C:\\Program Files\\Git\\bin\\bash.exe';
+      let systemPath = 'C:\\Program Files\\Git\\bin\\bash.exe';
+      return systemPath;
       //if (!fs.existsSync(userPath)) return userPath;
       //return systemPath;
     })(),
