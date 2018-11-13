@@ -6,8 +6,9 @@ if [ ! -z "$CDFROMPROFILE" ]; then
   unset CDFROMPROFILE
 fi
 
-export PYTHONDONTWRITEBYTECODE=x
-export PIPENV_VENV_IN_PROJECT=x
+if [ -f ~/.profile.local ]; then
+  source ~/.profile.local
+fi
 
 # ==================================================================
 # Automatic switch to $HOME
@@ -24,8 +25,12 @@ fi
 # =================================================================
 
 if [ "$(uname)" == "Darwin" ]; then
-  export PATH=${PATH}:"~/Library/Python/3.6/bin"
+  export PATH=${PATH}:"~/Library/Python/3.7/bin:/usr/local/lib/python3.7/site-packages"
   export PATH=${PATH}:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  export PATH=${PATH}:"/usr/local/gnupg-2.2/bin"
+  # added by Miniconda3 installer
+  # export PATH="/Users/nrosenstein/miniconda3/bin:$PATH"
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home"
 elif [ "$(uname)" == "Linux" ]; then
   export PATH=${PATH}
 else
@@ -57,6 +62,9 @@ function show-path {
     python -c "import os; print('\n'.join(os.getenv('PATH').split(os.pathsep)))"
 }
 
+export PYTHONDONTWRITEBYTECODE=x
+export PIPENV_VENV_IN_PROJECT=x
+
 # =================================================================
 # Aliases
 # =================================================================
@@ -69,28 +77,35 @@ alias cr="craftr"
 # =================================================================
 
 function __ps1_git_branch {
-    __green="\033[49m\033[32m%s"
-    __red="\033[49m\033[31m%s"
+    python <<EOF
+import subprocess, os
+try: from termcolor import colored
+except ImportError: colored = lambda s, *a, **kw: s
 
-    # Query current branch, and remove parentheses.
-    __branch="`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`"
-    __branch="`echo ${__branch} | sed 's/[)(]//g'`"
-    __color=""
+def output(command, default=''):
+    try:
+        data = subprocess.check_output(
+            command,
+            shell=True,
+            stderr=open(os.devnull, 'w'))
+        return data.decode().strip()
+    except subprocess.CalledProcessError:
+        return default
 
-    if [ ! -z "$__branch" ]; then
-        __porcelain="`git status --porcelain --untracked-files=no 2> /dev/null`"
-        if [ -z "$__porcelain" ]; then
-            __color="$__green"
-        else
-            __color="$__red"
-            __branch="$__branch*"
-        fi
-        __untracked="`git ls-files --others --exclude-standard 2> /dev/null`"
-        if [ ! -z "$__untracked" ]; then
-            __branch="$__branch+"
-        fi
-        printf " $__color($__branch)"
-    fi
+branch = output('git branch').split(' ')[-1].strip()
+email = output('git config user.email')
+
+changed = False
+untracked = False
+for line in output('git status --porcelain').split('\n'):
+    if line.startswith('??'):
+        untracked = True
+    else:
+        changed = True
+
+print(colored(' (branch: {}, user: {})'.format(branch, email), 'red' if changed else 'blue'))
+EOF
+
 }
 
 function __set_ps1 {

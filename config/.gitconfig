@@ -20,6 +20,7 @@
   mirror-push = "!f() { git push --prune $1 +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*; }; f"
   show-files = show --pretty="" --name-only
   subrepo = !nr git-subrepo
+  profile = !nr git-profile
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
