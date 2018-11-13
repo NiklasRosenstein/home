@@ -1,15 +1,8 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-  {
-    "key": "ctrl+enter ctrl+enter",
-    "command": "workbench.action.toggleCenteredLayout"
-  },
-  {
-    "key": "ctrl+alt+n",
-    "command": "explorer.newFile"
-  },
-  {
-    "key": "shift+alt+r",
-    "command": "workbench.files.action.showActiveFileInExplorer"
-  }
+    {
+        "key": "alt+tab",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    }
 ]

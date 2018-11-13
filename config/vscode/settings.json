@@ -60,5 +60,7 @@
   "explorer.openEditors.visible": 0,
   "explorer.autoReveal": true,
   "window.restoreWindows": "none",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false
 }
