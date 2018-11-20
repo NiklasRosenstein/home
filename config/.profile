@@ -93,6 +93,7 @@ def output(command, default=''):
         return default
 
 branch = output('git branch').split(' ')[-1].strip()
+if not branch: exit()
 email = output('git config user.email')
 
 changed = False
