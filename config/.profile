@@ -76,47 +76,10 @@ alias cr="craftr"
 # PS1 (thanks to https://stackoverflow.com/a/6086978/791713)
 # =================================================================
 
-function __ps1_git_branch {
-    python <<EOF
-import subprocess, os
-try: from termcolor import colored
-except ImportError: colored = lambda s, *a, **kw: s
-
-def output(command, default=''):
-    try:
-        data = subprocess.check_output(
-            command,
-            shell=True,
-            stderr=open(os.devnull, 'w'))
-        return data.decode().strip()
-    except subprocess.CalledProcessError:
-        return default
-
-branch = output('git branch').split(' ')[-1].strip()
-if not branch: exit()
-email = output('git config user.email')
-
-changed = False
-untracked = False
-for line in output('git status --porcelain').split('\n'):
-    if line.startswith('??'):
-        untracked = True
-    else:
-        changed = True
-
-print(colored(' (branch: {}, user: {})'.format(branch, email), 'red' if changed else 'blue'))
-EOF
-
-}
-
-function __set_ps1 {
-    local __user_and_host="\[\033[01;32m\]\u@\h "
-    local __cur_location="\[\033[01;33m\]\w"
-    local __prompt_tail="\[\033[49m\]\[\033[34m\]\n$"
-    local __last_color="\[\033[00m\]"
-    export PS1="$__user_and_host$__cur_location\`__ps1_git_branch\`$__prompt_tail$__last_color "
-}
-__set_ps1
+nr powerline 2>/dev/null >/dev/null
+if [ $? == 0 ]; then
+    export PS1="\`nr powerline\`\n$ "
+fi
 
 # =================================================================
 # SSH Agent (thanks to http://stackoverflow.com/a/18915067/791713)
